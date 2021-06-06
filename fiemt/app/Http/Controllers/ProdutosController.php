@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produtos;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class ProdutosController extends Controller
 {
@@ -55,5 +56,17 @@ class ProdutosController extends Controller
         ]);
          
         return response()->json(['message' => 'Cadastro Realizado com sucesso.']);
+    }
+
+    public function listprodutos(Request $request){
+        //fazendo busca no banco
+        $produtos = DB::table('produtos')->get();
+
+        //verificando se a busca contem dados
+        if(empty(json_decode($produtos))){
+            return response()->json(['error' => 'Nenhum resultado encontrado!'], 200);
+        }
+
+        return response()->json($produtos, 200);
     }
 }

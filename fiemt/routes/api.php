@@ -26,5 +26,7 @@ Route::group(['middleware' => 'jwt', 'prefix' => 'auth'], function ($router) {
 
     //endpoint para cadastro de produtos
     Route::post('addprodutos', [ProdutosController::class , 'addprodutos']);
+    //Listando produtos cadastrados
+    Route::get('listprodutos', [ProdutosController::class , 'listprodutos']);
  
 });
