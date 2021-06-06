@@ -69,4 +69,24 @@ class ProdutosController extends Controller
 
         return response()->json($produtos, 200);
     }
+
+    public function delprodutos(Request $request){
+
+        //definindo as mensagem de erros
+        $messages = [
+            'id.required' => 'O Campo id é obrigatório.',
+        ];
+         //verificando os parametros enviados
+         $validator =  Validator::make($request->all(), [
+              'id' => ['required', 'string'],
+         ],$messages);
+
+        //verificando se encontra erros nos paramtros enviados
+         if ($validator->fails()) {
+             return response()->json($validator->messages(), 200);
+         }
+         DB::table('produtos')->where('id', $request['id'])->delete();
+
+         return response()->json(['message' => 'Produto deletado com sucesso.']);
+    }
 }
