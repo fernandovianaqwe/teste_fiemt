@@ -8,13 +8,8 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
-
+import { AuthGuardService } from './guard/guard';
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
   {
     path: '404',
     component: P404Component,
@@ -30,24 +25,24 @@ export const routes: Routes = [
     }
   },
   {
-    path: 'login',
+    path: '',
     component: LoginComponent,
     data: {
-      title: 'Login Page'
+      title: 'Login'
     }
   },
   {
     path: 'register',
     component: RegisterComponent,
     data: {
-      title: 'Register Page'
+      title: 'Cadastro'
     }
   },
   {
     path: '',
     component: DefaultLayoutComponent,
     data: {
-      title: 'Home'
+      title: 'Bem vindo'
     },
     children: [
       {
@@ -64,7 +59,8 @@ export const routes: Routes = [
       },
       {
         path: 'dashboard',
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
+        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule),
+        canActivate : [AuthGuardService]
       },
       {
         path: 'icons',
@@ -81,7 +77,7 @@ export const routes: Routes = [
       {
         path: 'widgets',
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
-      }
+      }      
     ]
   },
   { path: '**', component: P404Component }

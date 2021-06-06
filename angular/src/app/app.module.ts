@@ -42,9 +42,17 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { ContentLoaderModule } from '@ngneat/content-loader';
+import { AuthGuardService } from './guard/guard';
 
 @NgModule({
   imports: [
+    ContentLoaderModule,
+    FormsModule,
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -59,6 +67,7 @@ import { ChartsModule } from 'ng2-charts';
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
+    ToastrModule.forRoot(),
   ],
   declarations: [
     AppComponent,
@@ -74,6 +83,7 @@ import { ChartsModule } from 'ng2-charts';
       useClass: HashLocationStrategy
     },
     IconSetService,
+    AuthGuardService,
   ],
   bootstrap: [ AppComponent ]
 })
