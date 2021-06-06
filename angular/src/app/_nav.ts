@@ -16,7 +16,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Cadastro de Produto',
-    url: '/theme/colors',
+    url: '/produto',
     icon: 'icon-basket-loaded'
   },
   {
@@ -25,7 +25,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Cadastro de Cliente',
-    url: '/charts',
+    url: '/cliente',
     icon: 'icon-user'
   },
   {
@@ -34,7 +34,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Fazer Pedidos',
-    url: '/charts',
+    url: '/pedido',
     icon: 'icon-bag'
   }
 ];
