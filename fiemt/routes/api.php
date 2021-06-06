@@ -25,10 +25,12 @@ Route::group(['middleware' => 'jwt', 'prefix' => 'auth'], function ($router) {
     Route::post('logout', [AuthController::class , 'logout']);
 
     //endpoint para cadastro de produtos
-    Route::post('addprodutos', [ProdutosController::class , 'addprodutos']);
+    Route::post('addprodutos', [ProdutosController::class , 'addProdutos']);
     //Listando produtos cadastrados
-    Route::get('listprodutos', [ProdutosController::class , 'listprodutos']);
+    Route::get('listprodutos', [ProdutosController::class , 'listProdutos']);
     //deletando produtos
-    Route::delete('delprodutos', [ProdutosController::class , 'delprodutos']);
+    Route::delete('delprodutos', [ProdutosController::class , 'delProdutos']);
+    //update produtos
+    Route::put('updateprodutos', [ProdutosController::class , 'updateProdutos']);
  
 });
