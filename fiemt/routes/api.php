@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProdutosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,12 @@ use App\Http\Controllers\AuthController;
 Route::post('login', [AuthController::class , 'login']);
 //endpint para cadastro
 Route::post('cadastro', [AuthController::class , 'register']);
+
+Route::group(['middleware' => 'jwt', 'prefix' => 'auth'], function ($router) {
+    //endpint para logout
+    Route::post('logout', [AuthController::class , 'logout']);
+
+    //endpoint para cadastro de produtos
+    Route::post('addprodutos', [ProdutosController::class , 'addprodutos']);
+ 
+});
