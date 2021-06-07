@@ -32,6 +32,7 @@ export class ApiService {
       })
     };
 
+    //produto
     public listProduto(){
       return this.httpClient.get<any>(this.apiUrl + 'auth/listprodutos',this.httpOptions2);
     }
@@ -43,6 +44,20 @@ export class ApiService {
     }
     public addProduto(parametro){
       return this.httpClient.post<any>(this.apiUrl + 'auth/addprodutos',parametro,this.httpOptions2);
+    }
+
+    //cliente
+    public listCliente(){
+      return this.httpClient.get<any>(this.apiUrl + 'auth/listcliente',this.httpOptions2);
+    }
+    public delCliente(id){
+      return this.httpClient.delete<any>(this.apiUrl + 'auth/delcliente?id=' + id,this.httpOptions2);
+    }
+    public updateCliente(parametro){
+      return this.httpClient.put<any>(this.apiUrl + 'auth/updatecliente?id=' + parametro.id + '&name=' + parametro.name + '&data='  + parametro.data,'',this.httpOptions2);
+    }
+    public addCliente(parametro){
+      return this.httpClient.post<any>(this.apiUrl + 'auth/addcliente',parametro,this.httpOptions2);
     }
 
 }

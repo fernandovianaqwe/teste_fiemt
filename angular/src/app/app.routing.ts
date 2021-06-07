@@ -58,7 +58,7 @@ export const routes: Routes = [
       },
       {
         path: 'cliente',
-        loadChildren: () => import('./views/icons/icons.module').then(m => m.IconsModule),
+        loadChildren: () => import('./views/cliente/cliente.module').then(m => m.ClienteModule),
         canActivate : [AuthGuardService]
       },
       {

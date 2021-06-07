@@ -4,78 +4,72 @@ import { ApiService } from '../../service/api.service';
 import {ModalDirective} from 'ngx-bootstrap/modal';
 
 @Component({
-  templateUrl: 'Produto.component.html'
+  templateUrl: 'cliente.component.html'
 })
-export class ProdutoComponent implements OnInit {
+export class ClienteComponent implements OnInit {
   @ViewChild('primaryModal') public primaryModal: ModalDirective;
   @ViewChild('primaryModal2') public primaryModal2: ModalDirective;
   constructor(private ApiService: ApiService,private toastr: ToastrService){
   }
   carregando = false;
   upcarregando = false;
-  produto = [];
+  cliente = [];
   parametro = {
         "id": '',
         "name": '',
-        "categoria": '',
-        "descricao": '',
-        "valor": ''
+        "data": ''
   };
   parametroCriar = {
         "name": '',
-        "categoria": '',
-        "descricao": '',
-        "valor": ''
+        "data": ''
   };
   ngOnInit(): void {
     this.carregando = true;
-    this.buscaProduto();
+    this.buscaCliente();
     }
 
-  buscaProduto(){
-    this.ApiService.listProduto().subscribe(retorno => {
-      this.produto = retorno;
+  buscaCliente(){
+    this.ApiService.listCliente().subscribe(retorno => {
+      this.cliente = retorno;
       this.carregando = false;
     })
   }
 
   excluir(id){
     this.carregando = true;
-    this.ApiService.delProduto(id).subscribe(returno =>{
-      this.toastr.success("Produto Deletado com sucesso", "Produto");
-      this.buscaProduto();
+    this.ApiService.delCliente(id).subscribe(returno =>{
+      this.toastr.success("Cliente Deletado com sucesso", "Cliente");
+      this.buscaCliente();
     })
   }
 
   update(id){
-    this.produto.forEach(pro =>{
+    this.cliente.forEach(pro =>{
       if(pro.id == id){
         this.parametro.id = pro.id;
         this.parametro.name = pro.name;
-        this.parametro.categoria = pro.categoria;
-        this.parametro.descricao = pro.descricao;
-        this.parametro.valor = pro.valor;
+        this.parametro.data = pro.categoria;
       }
     })
     this.primaryModal.show()
   }
 
-  updateProduto(){
-    if(this.parametro.name == null || this.parametro.descricao == null || this.parametro.valor == null || this.parametro.descricao === undefined){
+  updateCliente(){
+    if(this.parametro.name == null || this.parametro.data == null){
       this.toastr.error('Campos obrigatorio vazio','Erro');
       return null;
     }
     this.upcarregando = true;
-    this.ApiService.updateProduto(this.parametro).subscribe(retorno => {
+    this.ApiService.updateCliente(this.parametro).subscribe(retorno => {
       if(retorno.error){
         this.toastr.error(retorno.error, 'Erro!!');
         this.upcarregando = false;
         return null;
       }
-      this.toastr.success("Produto Alterado com sucesso", 'Sucesso!!');
+      this.toastr.success("Cliente Alterado com sucesso", 'Sucesso!!');
       this.upcarregando = false;
       this.carregando = true;
-      this.buscaProduto();
+      this.buscaCliente();
       this.primaryModal.hide()
     })
 
@@ -86,21 +80,21 @@ export class ProdutoComponent implements OnInit {
   }
 
   criarModal(){
-    if(this.parametroCriar.name == '' || this.parametroCriar.descricao == '' || this.parametroCriar.valor == ''){
+    if(this.parametroCriar.name == '' || this.parametroCriar.data == ''){
       this.toastr.error('Campos obrigatorio vazio','Erro');
       return null;
     }
     this.upcarregando = true;
-    this.ApiService.addProduto(this.parametroCriar).subscribe(retorno => {
+    this.ApiService.addCliente(this.parametroCriar).subscribe(retorno => {
       if(retorno.error){
         this.toastr.error(retorno.error, 'Erro!!');
         this.upcarregando = false;
         return null;
       }
-      this.toastr.success("Produto Criado com sucesso", 'Sucesso!!');
+      this.toastr.success("Cliente Criado com sucesso", 'Sucesso!!');
       this.upcarregando = false;
       this.carregando = true;
-      this.buscaProduto();
+      this.buscaCliente();
       this.primaryModal2.hide()
     })
 
