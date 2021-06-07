@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\PedidosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,5 +43,12 @@ Route::group(['middleware' => 'jwt', 'prefix' => 'auth'], function ($router) {
     Route::delete('delcliente', [ClientesController::class , 'delCliente']);
     //update Cliente
     Route::put('updatecliente', [ClientesController::class , 'updateCliente']);
+    
+    //endpoint para cadastro de Pedidos
+    Route::post('addpedido', [PedidosController::class , 'addPedido']);
+    //Listando Pedidos cadastrados
+    Route::get('listpedido', [PedidosController::class , 'listPedido']);
+    //deletando Pedidos
+    Route::delete('delpedido', [PedidosController::class , 'delPedido']);
  
 });
