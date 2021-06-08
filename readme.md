@@ -7,6 +7,7 @@
 <p>1º: Entrar no arquivo hosts no caminho 'C:\Windows\System32\drivers\etc\hosts' pra Windows, '/private/etc/hosts' ou '/etc/hosts para' MAC ou execute no terminal 'cat /etc/hosts' para linux Adicionar:</p>
 
 <code>127.0.0.1 fiemt.api</code>
+
 <code>127.0.0.1 fiemt.local </code>
 
 <p>Na ultima linha do arquivo.</p>
