@@ -4,24 +4,22 @@ import { ChartsModule } from 'ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { CommonModule } from '@angular/common'; 
-import { ProdutoComponent } from './produto.component';
-import { ProdutoRoutingModule } from './produto-routing.module';
+import { PedidoComponent } from './pedido.component';
+import { PedidoRoutingModule } from './pedido-routing.module';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   imports: [
-    NgSelectModule,
     ContentLoaderModule,
     CommonModule,
     FormsModule,
-    ProdutoRoutingModule,
+    PedidoRoutingModule,
     ChartsModule,
     BsDropdownModule,
     ButtonsModule.forRoot(),
     ModalModule.forRoot()
   ],
-  declarations: [ ProdutoComponent,ProdutoComponent ]
+  declarations: [ PedidoComponent ]
 })
-export class ProdutoModule { }
+export class PedidoModule { }

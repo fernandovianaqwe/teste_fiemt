@@ -11,7 +11,6 @@ class Pedidos extends Model
     
     protected $fillable = [
         'cliente_id',
-        'produto_id',
         'valortotal',
     ];
 }

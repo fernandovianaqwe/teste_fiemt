@@ -16,12 +16,10 @@ class CreatePedidosTable extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cliente_id')->unsigned();
-            $table->integer('produto_id')->unsigned();
             $table->double('valortotal', 8, 2);
             $table->timestamps();
 
             $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->foreign('produto_id')->references('id')->on('produtos');
         });
     }
 

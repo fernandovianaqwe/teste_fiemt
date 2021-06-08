@@ -27,6 +27,28 @@ export class ProdutoComponent implements OnInit {
         "descricao": '',
         "valor": ''
   };
+  categoria = [
+          {
+        "id": '1',
+        "name": "Categoria 01"
+          },
+          {
+        "id": '2',
+        "name": "Categoria 02"
+          },
+          {
+        "id": '3',
+        "name": "Categoria 03"
+          },
+          {
+        "id": '4',
+        "name": "Categoria 04"
+          },
+          {
+        "id": '5',
+        "name": "Categoria 05"
+          }
+];
   ngOnInit(): void {
     this.carregando = true;
     this.buscaProduto();
@@ -61,7 +83,7 @@ export class ProdutoComponent implements OnInit {
   }
 
   updateProduto(){
-    if(this.parametro.name == null || this.parametro.descricao == null || this.parametro.valor == null || this.parametro.descricao === undefined){
+    if(this.parametro.name == '' || this.parametro.descricao == '' || this.parametro.valor == '' || typeof this.parametro.categoria === 'undefined'){
       this.toastr.error('Campos obrigatorio vazio','Erro');
       return null;
     }
@@ -86,7 +108,7 @@ export class ProdutoComponent implements OnInit {
   }
 
   criarModal(){
-    if(this.parametroCriar.name == '' || this.parametroCriar.descricao == '' || this.parametroCriar.valor == ''){
+    if(this.parametroCriar.name == '' || this.parametroCriar.descricao == '' || this.parametroCriar.valor == '' || typeof this.parametro.categoria === 'undefined'){
       this.toastr.error('Campos obrigatorio vazio','Erro');
       return null;
     }

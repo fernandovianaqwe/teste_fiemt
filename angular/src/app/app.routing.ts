@@ -63,7 +63,7 @@ export const routes: Routes = [
       },
       {
         path: 'pedido',
-        loadChildren: () => import('./views/notifications/notifications.module').then(m => m.NotificationsModule),
+        loadChildren: () => import('./views/pedido/pedido.module').then(m => m.PedidoModule),
         canActivate : [AuthGuardService]
       }     
     ]

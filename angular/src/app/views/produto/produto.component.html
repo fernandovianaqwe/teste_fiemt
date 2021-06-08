@@ -61,11 +61,8 @@
               <span class="input-group-text">Categoria</span>
             </div>
             <select name="categoria" [(ngModel)]="parametro.categoria" class="form-control">
-              <option value="1">Categoria 01</option>
-              <option value="2">Categoria 02</option>
-              <option value="3">Categoria 03</option>
-              <option value="4">Categoria 04</option>
-              <option value="5">Categoria 05</option>
+              <option value="null" [disabled]="true" >Selecione a Categoria</option>
+              <option *ngFor="let cat of categoria" [value]="cat.id">{{cat.name}}</option>
             </select>
           </div>
           <div class="input-group mb-3">
@@ -113,12 +110,8 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Categoria</span>
             </div>
-            <select name="categoria" [(ngModel)]="parametroCriar.categoria" class="form-control">
-              <option value="1">Categoria 01</option>
-              <option value="2">Categoria 02</option>
-              <option value="3">Categoria 03</option>
-              <option value="4">Categoria 04</option>
-              <option value="5">Categoria 05</option>
+            <select name="categoria" [(ngModel)]="parametro.categoria" placeholder="Selecione a Categoria" class="form-control">
+              <option *ngFor="let cat of categoria" [value]="cat.id" [selected]="cat.id == parametro.categoria" >{{cat.name}}</option>
             </select>
           </div>
           <div class="input-group mb-3">

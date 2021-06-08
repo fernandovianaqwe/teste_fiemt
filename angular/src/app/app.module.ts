@@ -47,9 +47,11 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { ContentLoaderModule } from '@ngneat/content-loader';
 import { AuthGuardService } from './guard/guard';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   imports: [
+    NgSelectModule,
     ContentLoaderModule,
     FormsModule,
     HttpClientModule,

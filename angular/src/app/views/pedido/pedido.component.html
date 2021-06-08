@@ -1,0 +1,102 @@
+<bullet-list-content-loader *ngIf="carregando"></bullet-list-content-loader>
+<div class="row" *ngIf="!carregando">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i> Produtos
+        <button type="button" class="btn btn-primary float-right btn-sm" (click)="criar()">+ Novo Pedido</button>
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-striped table-sm">
+          <thead>
+            <tr>
+              <th>ID Pedido</th>
+              <th>ID do Cliente</th>
+              <th>Nome do Produto</th>
+              <th>Quantidade</th>
+              <th>Valor Unitario</th>
+              <th>Valor Total</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pedidos of pedido">
+              <td>{{pedidos?.id_pedido}}</td>
+              <td>{{pedidos?.id_cliente}}</td>
+              <td>{{pedidos?.nome_produto}}</td>
+              <td>{{pedidos?.quantidade}}</td>
+              <td>{{pedidos?.valor | currency:'BRL'}}</td>
+              <td>{{pedidos?.valor_total | currency:'BRL'}}</td>
+              <td>
+                <button type="button" class="btn btn-danger btn-sm" (click)="excluir(pedidos?.id_pedido)">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>OBS: Pedidos sepados pelo "ID Pedido"</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div bsModal #primaryModal2="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-primary" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Fazer Pedido</h4>
+        <button type="button" class="close" (click)="primaryModal2.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <bullet-list-content-loader *ngIf="upcarregando"></bullet-list-content-loader>
+      <form (ngSubmit)="criarModal()" *ngIf="!upcarregando">
+      <div class="modal-body">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Cliente</span>
+            </div>
+            <select name="cliente_id" [(ngModel)]="parametroCriar.cliente_id" class="form-control">
+              <option value="null" [disabled]="true" >Selecione o Cliente</option>
+              <option *ngFor="let cat of cliente" [value]="cat.id">{{cat.name}}</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Selecionar produto</span>
+          </div>
+          <select name="produtoEscolhido" [(ngModel)]="produtoEscolhido" class="form-control">
+            <option value="null" [disabled]="true" >Selecione o Produto</option>
+            <option *ngFor="let cat of produto" [value]="cat.id">{{cat.name}}</option>
+          </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Quantidade do Produto</span>
+            </div>
+            <input id="quantidade" name="quantidade" [(ngModel)]="quantidade" type="number" class="form-control"  required>
+          </div>
+          <button type="button" (click)="addProduto()" class="btn btn-secondary float-right" >Adiconar Produto</button>
+          <!-- <div class="input-group mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Valor R$</span>
+            </div>
+            <input id="valor" name="valor" [(ngModel)]="parametroCriar.valor" type="number" class="form-control" required>
+          </div> -->
+          <p>Valor Total : {{ valortotal | currency:'BRL'}}</p>
+          <p>Produtos:</p>
+
+          <div *ngIf="produtostela != []">
+            <p *ngFor="let cat of produtostela">
+              Nome do Produto: {{cat.name}}, Valor: {{cat.valor| currency:'BRL'}}, Qtd: {{cat.quantidade}}
+            </p>
+          </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="primaryModal2.hide()">Fechar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

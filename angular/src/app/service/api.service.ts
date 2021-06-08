@@ -60,4 +60,15 @@ export class ApiService {
       return this.httpClient.post<any>(this.apiUrl + 'auth/addcliente',parametro,this.httpOptions2);
     }
 
+    //pedido
+    public listPedido(){
+      return this.httpClient.get<any>(this.apiUrl + 'auth/listpedido',this.httpOptions2);
+    }
+    public delPedido(id){
+      return this.httpClient.delete<any>(this.apiUrl + 'auth/delpedido?id=' + id,this.httpOptions2);
+    }
+    public addPedido(parametro){
+      return this.httpClient.post<any>(this.apiUrl + 'auth/addpedido',parametro,this.httpOptions2);
+    }
+
 }

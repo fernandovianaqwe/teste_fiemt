@@ -28,15 +28,12 @@ class PedidosController extends Controller
         $messages = [
             'cliente_id' => 'Campo cliente_id inválido.',
             'cliente_id.required' => 'O Campo cliente_id é obrigatório.',
-            'produto_id' => 'Campo produto_id inválido.',
-            'produto_id.required' => 'O Campo produto_id é obrigatório.',
             'valortotal' => 'Campo valortotal inválido.',
             'valortotal.required' => 'O Campo valortotal é obrigatório.',
         ];
          //verificando os parametros enviados
          $validator =  Validator::make($request->all(), [
               'cliente_id' => ['required', 'integer'],
-              'produto_id' => ['required', 'integer'],
               'valortotal' => ['required', 'numeric'],
          ],$messages);
 
@@ -48,7 +45,7 @@ class PedidosController extends Controller
         //validando pedidos
         $produtos = $request['produtos'];
         foreach ($produtos as $produto) {
-            if(empty($produto['name']) || empty($produto['quantidade']) || empty($produto['valor'])){
+            if(empty($produto['name']) || empty($produto['quantidade']) || empty($produto['valor']) || empty($produto['produto_id'])){
                 return response()->json(['error' => 'Produto com campo faltando!'], 200); 
             }
         }
@@ -56,15 +53,14 @@ class PedidosController extends Controller
         //insetindo o produto no banco
         $pedido_id = Pedidos::create([
             'cliente_id' => $request['cliente_id'],
-            'produto_id' => $request['produto_id'],
             'valortotal' => $request['valortotal'],
         ])->id;
 
-        var_dump($pedido_id);
          //insetindo o produto no banco
          foreach ($produtos as $produto) {
              PedidosProdutos::create([
                  'pedido_id' => $pedido_id,
+                 'produto_id' => $produto['produto_id'],
                  'name' => $produto['name'],
                  'quantidade' => $produto['quantidade'],
                  'valor' => $produto['valor'],
@@ -86,7 +82,7 @@ class PedidosController extends Controller
                 (pp.quantidade * po.valor) as valor_total 
             FROM pedidos_produtos pp 
             inner join pedidos p on pp.pedido_id = p.id 
-            inner join produtos po on p.produto_id = po.id 
+            inner join produtos po on pp.produto_id = po.id 
             inner join clientes c on c.id = p.cliente_id
         ");
 
