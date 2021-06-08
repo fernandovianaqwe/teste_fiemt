@@ -18,7 +18,7 @@
 
 <p>3º: Entrar na pasta clonada com o comando:</p>
 
-<code>cd fiemt</code>
+<code>cd teste_fiemt</code>
 
 <p>4º: Entrar na pasta laradock com o comando:</p>
 
