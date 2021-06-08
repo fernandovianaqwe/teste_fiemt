@@ -30,7 +30,7 @@
 
 <p>6º: Entrar no container workspace para baixar as pedencias do projeto:</p>
 
-<code>docker-compose -it exec workspace /bin/bash</code>
+<code>docker exec -it workspace /bin/bash</code>
 
 <p>7º: Dar permissão para a pasta e entrar na pasta do prjeto:</p>
 
