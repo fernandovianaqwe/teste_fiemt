@@ -110,7 +110,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text">Categoria</span>
             </div>
-            <select name="categoria" [(ngModel)]="parametro.categoria" placeholder="Selecione a Categoria" class="form-control">
+            <select name="categoria" [(ngModel)]="parametroCriar.categoria" placeholder="Selecione a Categoria" class="form-control">
               <option *ngFor="let cat of categoria" [value]="cat.id" [selected]="cat.id == parametro.categoria" >{{cat.name}}</option>
             </select>
           </div>
